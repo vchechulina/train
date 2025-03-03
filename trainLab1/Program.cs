@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 
 namespace train
 {
@@ -6,140 +7,110 @@ namespace train
     {
         static void Main(string[] args)
         {
-            Console.Write("Введіть кількість рядів: ");
-            int rows = GetValidIntInput();
-            Console.Write("Введіть кількість місць у ряді: ");
-            int columns = GetValidIntInput();
-            int[,] seats = new int[rows, columns];
+            int rows = 5;
+            int columns = 8;
 
+            int[,] seats = new int[rows, columns];
             bool isOpen = true;
 
             Console.WriteLine("Бронювання місця у потягу");
 
             while (isOpen)
             {
-                Console.WriteLine("\nЩо ви хочете зробити?\n" +
-                                  "1 - Переглянути стан місць\n" +
-                                  "2 - Забронювати місце\n" +
-                                  "3 - Відмінити бронювання\n" +
-                                  "4 - Вийти з програми");
+                Console.WriteLine("\nЩо ви хочете зробити?\n\n1 - Переглянути стан місць\n2 - Забронювати місце\n3 - Відмінити бронювання\n4 - Вийти з програми");
                 Console.Write("\nОберіть команду: ");
 
-                int command = GetValidIntInput();
+                if (!int.TryParse(Console.ReadLine(), out int command))
+                {
+                    Console.WriteLine("Помилка! Введіть число.");
+                    continue;
+                }
 
                 switch (command)
                 {
                     case 1:
-                        DisplaySeats(seats);
+                        for (int i = 0; i < seats.GetLength(0); i++)
+                        {
+                            Console.Write($"Ряд {i + 1}: ");
+                            for (int j = 0; j < seats.GetLength(1); j++)
+                            {
+                                Console.ForegroundColor = seats[i, j] == 0 ? ConsoleColor.Green : ConsoleColor.Red;
+                                Console.Write(seats[i, j] == 0 ? "[ ] " : "[X] ");
+                            }
+                            Console.WriteLine();
+                            Console.ResetColor();
+                        }
                         break;
 
                     case 2:
-                        BookSeat(seats);
+                        Console.Write("Введіть номер ряду: ");
+                        if (!int.TryParse(Console.ReadLine(), out int userSeries) || userSeries < 1 || userSeries > rows)
+                        {
+                            Console.WriteLine("Некоректний номер ряду.");
+                            break;
+                        }
+                        userSeries--;
+
+                        Console.Write("Введіть номер місця: ");
+                        if (!int.TryParse(Console.ReadLine(), out int userSeat) || userSeat < 1 || userSeat > columns)
+                        {
+                            Console.WriteLine("Некоректний номер місця.");
+                            break;
+                        }
+                        userSeat--;
+
+                        if (seats[userSeries, userSeat] == 0)
+                        {
+                            seats[userSeries, userSeat] = 1;
+                            Console.WriteLine($"Місце {userSeat + 1} у ряді {userSeries + 1} заброньовано.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Місце вже заброньоване. Виберіть інше.");
+                        }
                         break;
 
                     case 3:
-                        CancelBooking(seats);
+                        Console.Write("Введіть номер ряду: ");
+                        if (!int.TryParse(Console.ReadLine(), out userSeries) || userSeries < 1 || userSeries > rows)
+                        {
+                            Console.WriteLine("Некоректний номер ряду.");
+                            break;
+                        }
+                        userSeries--;
+
+                        Console.Write("Введіть номер місця: ");
+                        if (!int.TryParse(Console.ReadLine(), out userSeat) || userSeat < 1 || userSeat > columns)
+                        {
+                            Console.WriteLine("Некоректний номер місця.");
+                            break;
+                        }
+                        userSeat--;
+
+                        if (seats[userSeries, userSeat] == 1)
+                        {
+                            seats[userSeries, userSeat] = 0;
+                            Console.WriteLine($"Бронювання місця {userSeat + 1} у ряді {userSeries + 1} скасовано.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Це місце не було заброньоване.");
+                        }
                         break;
 
                     case 4:
-                        Console.WriteLine("Ви впевнені, що хочете вийти? (Y/N)");
-                        string answer = Console.ReadLine()?.Trim() ?? "";
-                        if (answer.ToLower() == "y")
+                        Console.Write("Ви впевнені, що хочете вийти? (Y/N): ");
+                        string answer = Console.ReadLine() ?? "";
+                        if (answer.Trim().ToLower() == "y")
                         {
                             isOpen = false;
                         }
                         break;
 
                     default:
-                        Console.WriteLine("Невідома команда. Спробуйте ще раз.");
+                        Console.WriteLine("Невідома команда.");
                         break;
                 }
-            }
-        }
-
-        static void DisplaySeats(int[,] seats)
-        {
-            Console.WriteLine("\nСтан місць:");
-            for (int i = 0; i < seats.GetLength(0); i++)
-            {
-                Console.Write($"Ряд {i + 1}: ");
-                for (int j = 0; j < seats.GetLength(1); j++)
-                {
-                    Console.ForegroundColor = seats[i, j] == 0 ? ConsoleColor.Green : ConsoleColor.Red;
-                    Console.Write(seats[i, j] == 0 ? "[ ] " : "[X] ");
-                }
-                Console.WriteLine();
-                Console.ResetColor();
-            }
-        }
-
-        static void BookSeat(int[,] seats)
-        {
-            Console.Write("Введіть номер ряду: ");
-            int row = GetValidIntInput() - 1;
-            if (row < 0 || row >= seats.GetLength(0))
-            {
-                Console.WriteLine("Такого ряду немає.");
-                return;
-            }
-
-            Console.Write("Введіть номер місця: ");
-            int seat = GetValidIntInput() - 1;
-            if (seat < 0 || seat >= seats.GetLength(1))
-            {
-                Console.WriteLine("Такого місця немає.");
-                return;
-            }
-
-            if (seats[row, seat] == 0)
-            {
-                seats[row, seat] = 1;
-                Console.WriteLine($"Місце в ряду {row + 1}, місце {seat + 1} заброньовано.");
-            }
-            else
-            {
-                Console.WriteLine("Місце вже заброньоване. Виберіть інше.");
-            }
-        }
-
-        static void CancelBooking(int[,] seats)
-        {
-            Console.Write("Введіть номер ряду: ");
-            int row = GetValidIntInput() - 1;
-            if (row < 0 || row >= seats.GetLength(0))
-            {
-                Console.WriteLine("Такого ряду немає.");
-                return;
-            }
-
-            Console.Write("Введіть номер місця: ");
-            int seat = GetValidIntInput() - 1;
-            if (seat < 0 || seat >= seats.GetLength(1))
-            {
-                Console.WriteLine("Такого місця немає.");
-                return;
-            }
-
-            if (seats[row, seat] == 1)
-            {
-                seats[row, seat] = 0;
-                Console.WriteLine($"Бронювання місця в ряду {row + 1}, місце {seat + 1} скасовано.");
-            }
-            else
-            {
-                Console.WriteLine("Місце не заброньоване. Скасування неможливе.");
-            }
-        }
-
-        static int GetValidIntInput()
-        {
-            while (true)
-            {
-                if (int.TryParse(Console.ReadLine(), out int result) && result > 0)
-                {
-                    return result;
-                }
-                Console.Write("Некоректне введення! Введіть число більше за 0: ");
             }
         }
     }

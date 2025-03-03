@@ -12,3 +12,4 @@ C:\Універ\3 курс\6 семестр\Управління IT-проєкт
 C:\Універ\3 курс\6 семестр\Управління IT-проєктами\лаб1\trainLab1\trainLab1\obj\Debug\net9.0\trainLab1.pdb
 C:\Універ\3 курс\6 семестр\Управління IT-проєктами\лаб1\trainLab1\trainLab1\obj\Debug\net9.0\trainLab1.genruntimeconfig.cache
 C:\Універ\3 курс\6 семестр\Управління IT-проєктами\лаб1\trainLab1\trainLab1\obj\Debug\net9.0\ref\trainLab1.dll
+C:\Універ\3 курс\6 семестр\Управління IT-проєктами\лаб1\trainLab1\trainLab1\obj\Debug\net9.0\trainLab1.sourcelink.json
