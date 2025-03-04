@@ -1,0 +1,14 @@
+C:\Users\Лера\Desktop\Project\TrainReservation\TrainApp\bin\Debug\net9.0\TrainApp.exe
+C:\Users\Лера\Desktop\Project\TrainReservation\TrainApp\bin\Debug\net9.0\TrainApp.deps.json
+C:\Users\Лера\Desktop\Project\TrainReservation\TrainApp\bin\Debug\net9.0\TrainApp.runtimeconfig.json
+C:\Users\Лера\Desktop\Project\TrainReservation\TrainApp\bin\Debug\net9.0\TrainApp.dll
+C:\Users\Лера\Desktop\Project\TrainReservation\TrainApp\bin\Debug\net9.0\TrainApp.pdb
+C:\Users\Лера\Desktop\Project\TrainReservation\TrainApp\obj\Debug\net9.0\TrainApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Лера\Desktop\Project\TrainReservation\TrainApp\obj\Debug\net9.0\TrainApp.AssemblyInfoInputs.cache
+C:\Users\Лера\Desktop\Project\TrainReservation\TrainApp\obj\Debug\net9.0\TrainApp.AssemblyInfo.cs
+C:\Users\Лера\Desktop\Project\TrainReservation\TrainApp\obj\Debug\net9.0\TrainApp.csproj.CoreCompileInputs.cache
+C:\Users\Лера\Desktop\Project\TrainReservation\TrainApp\obj\Debug\net9.0\TrainApp.dll
+C:\Users\Лера\Desktop\Project\TrainReservation\TrainApp\obj\Debug\net9.0\refint\TrainApp.dll
+C:\Users\Лера\Desktop\Project\TrainReservation\TrainApp\obj\Debug\net9.0\TrainApp.pdb
+C:\Users\Лера\Desktop\Project\TrainReservation\TrainApp\obj\Debug\net9.0\TrainApp.genruntimeconfig.cache
+C:\Users\Лера\Desktop\Project\TrainReservation\TrainApp\obj\Debug\net9.0\ref\TrainApp.dll
